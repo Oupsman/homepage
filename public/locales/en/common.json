@@ -414,9 +414,11 @@
     },
     "opnsense": {
         "cpu": "CPU Load",
-        "memory": "Active Memory",
-        "wanUpload": "WAN Upload",
-        "wanDownload": "WAN Download"
+        "memory": "Memory Usage",
+        "wanUpload": "Uploaded traffic",
+        "wanDownload": "Downloaded Traffic",
+        "wanUploadRate": "Upload Rate",
+        "wanDownloadRate": "Download Rate"
     },
     "moonraker": {
         "printer_state": "Printer State",
