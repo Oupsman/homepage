@@ -32,6 +32,7 @@
     },
     "resources": {
         "cpu": "CPU",
+        "mem": "MEM",
         "total": "Total",
         "free": "Free",
         "used": "Used",
@@ -449,5 +450,10 @@
         "photos": "Photos",
         "videos": "Videos",
         "storage": "Storage"
+    },
+    "diskstation": {
+        "days": "Days",
+        "uptime": "Uptime",
+        "volumeAvailable": "Available"
     }
 }
