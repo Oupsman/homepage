@@ -69,10 +69,8 @@ export default function Component({ service }) {
       <Container service={service}>
         <Block label="opnsense.cpu" />
         <Block label="opnsense.memory" />
-        <Block label="opnsense.wanUpload" />
-        <Block label="opnsense.wanDownload" />
-        <Block label="opnsense.wanUploadRate" />
-        <Block label="opnsense.wanDownloadRate" />
+        <Block label="opnsense.wanTraffic" />
+        <Block label="opnsense.wanTrafficRate" />
       </Container>
     );
   }
@@ -124,10 +122,8 @@ export default function Component({ service }) {
     <Container service={service}>
       <Block label="opnsense.cpu" value={t("common.percent", { value: cpu.toFixed(2) })}  />
       <Block label="opnsense.memory" value={t("common.percent", { value: memory})} />
-      {wan && mode === "total" && <Block label="opnsense.wanUpload" value={t("common.bytes", { value: datas.wanUpload} )} />}
-      {wan && mode === "total" && <Block label="opnsense.wanDownload" value={t("common.bytes", { value: datas.wanDownload} )} /> }
-      {wan && mode === "rate" && <Block label="opnsense.wanUploadRate" value={t("common.bitrate", { value: datas.wanUploadRate})} /> }
-      {wan && mode === "rate" && <Block label="opnsense.wanDownloadRate" value={t("common.bitrate", { value: datas.wanDownloadRate})} /> }
+      {wan && mode === "total" && <Block label="opnsense.wanTraffic" value={t("common.bytes", { value: datas.wanUpload + datas.wanDownload} )} />}
+      {wan && mode === "rate" && <Block label="opnsense.wanTrafficRate" value={t("common.bitrate", { value: datas.wanUploadRate + datas.wanDownloadRate})} /> }
     </Container>
   );
 }
