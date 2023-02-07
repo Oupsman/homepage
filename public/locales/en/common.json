@@ -418,10 +418,8 @@
     "opnsense": {
         "cpu": "CPU Load",
         "memory": "Memory Usage",
-        "wanUpload": "Uploaded traffic",
-        "wanDownload": "Downloaded Traffic",
-        "wanUploadRate": "Upload Rate",
-        "wanDownloadRate": "Download Rate"
+        "wanTraffic": "Total traffic",
+        "wanTrafficRate": "Traffic Rate"
     },
     "moonraker": {
         "printer_state": "Printer State",
