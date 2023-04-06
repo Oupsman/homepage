@@ -121,7 +121,7 @@ export default function Component({ service }) {
   datas.wanDownload = wanDownload;
 
   localStorage.setItem(dataStorage, JSON.stringify(datas));
-  let res = ""
+  let res
   if (split === "summed") {
     res = (
       <Container service={service}>
