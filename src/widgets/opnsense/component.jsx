@@ -80,7 +80,11 @@ export default function Component({ service }) {
   const cpu = 100 - parseFloat(cpuIdle);
   const memory = sumMemory(activityData.headers[3]);
 
-  const mode = widget.mode ? widget.mode : "total"
+  const mode = widget.mode ? widget.mode : "total_split"
+  const params = mode.split ("_")
+
+  const rate = params[0]
+  const split = params[1]
 
   const wan = widget.wan ? interfaceData.interfaces[widget.wan] : interfaceData.interfaces.wan;
   const wanUpload = parseFloat(wan['bytes transmitted']);
@@ -117,13 +121,27 @@ export default function Component({ service }) {
   datas.wanDownload = wanDownload;
 
   localStorage.setItem(dataStorage, JSON.stringify(datas));
-
-  return (
-    <Container service={service}>
-      <Block label="opnsense.cpu" value={t("common.percent", { value: cpu.toFixed(2) })}  />
-      <Block label="opnsense.memory" value={t("common.percent", { value: memory})} />
-      {wan && mode === "total" && <Block label="opnsense.wanTraffic" value={t("common.bytes", { value: datas.wanUpload + datas.wanDownload} )} />}
-      {wan && mode === "rate" && <Block label="opnsense.wanTrafficRate" value={t("common.bitrate", { value: datas.wanUploadRate + datas.wanDownloadRate})} /> }
-    </Container>
-  );
+  let res = ""
+  if (split === "summed") {
+    res = (
+      <Container service={service}>
+        <Block label="opnsense.cpu" value={t("common.percent", { value: cpu.toFixed(2) })}  />
+        <Block label="opnsense.memory" value={t("common.percent", { value: memory})} />
+        {wan && mode === "total" && <Block label="opnsense.wanTraffic" value={t("common.bytes", { value: datas.wanUpload + datas.wanDownload} )} />}
+        {wan && rate === "rate" && <Block label="opnsense.wanTrafficRate" value={t("common.bitrate", { value: datas.wanUploadRate + datas.wanDownloadRate})} /> }
+      </Container>
+    );
+  } else {
+    res = (
+      <Container service={service}>
+        <Block label="opnsense.cpu" value={t("common.percent", { value: cpu.toFixed(2) })} />
+        <Block label="opnsense.memory" value={t("common.percent", { value: memory })} />
+        {wan && mode === "total" && <Block label="opnsense.wanTrafficUpload" value={t("common.bytes", { value: datas.wanUpload} )} />}
+        {wan && mode === "total" && <Block label="opnsense.wanTrafficDownload" value={t("common.bytes", { value: datas.wanDownload} )} />}
+        {wan && rate === "rate" && <Block label="opnsense.wanTrafficUploadRate" value={t("common.bitrate", { value: datas.wanUploadRate}  )}/>}
+        {wan && rate === "rate" && <Block label="opnsense.wanTrafficDownloadRate" value={t("common.bitrate", { value: datas.wanDownloadRate})}/>}
+      </Container>
+    );
+  }
+ return res;
 }

@@ -419,7 +419,11 @@
         "cpu": "CPU Load",
         "memory": "Memory Usage",
         "wanTraffic": "Total traffic",
-        "wanTrafficRate": "Traffic Rate"
+        "wanTrafficRate": "Traffic Rate",
+        "wanTrafficUploadRate": "Upload Rate",
+        "wanTrafficDownloadRate": "Download Rate",
+        "wanTrafficUpload": "Upload",
+        "wanTrafficDownload": "Download"
     },
     "moonraker": {
         "printer_state": "Printer State",
